@@ -116,7 +116,7 @@ namespace ConsoleApp2
             Console.WriteLine("Please, enter animal type:");
             Console.WriteLine("1.Dog");
             Console.WriteLine("2.Cat");
-            int type = Convert.ToInt32(Console.ReadLine());
+            int type = EnterNumber();
             var animalType = (AnimalType)type; //безопасное приведение типов
 
             Console.WriteLine("Please, enter animal name.");
@@ -132,17 +132,17 @@ namespace ConsoleApp2
             Console.WriteLine("Please, enter animal type:");
             Console.WriteLine("1.Dog");
             Console.WriteLine("2.Cat");
-            int type = Convert.ToInt32(Console.ReadLine());
+            int type = EnterNumber();
             var animalType = (AnimalType)type;
 
             Console.WriteLine("Please, enter animal name");
             string name = Console.ReadLine();
 
             Console.WriteLine("Please, enter animal price");
-            float price = (float)Convert.ToDouble(Console.ReadLine()); // Double привели к float
+            float price = EnterText(); 
 
             Console.WriteLine("Please, enter animal birthday");
-            DateTime birthday = DateTime.Parse(Console.ReadLine());
+            DateTime birthday = EnterData();
 
             var buyAnimal = petShop.BuyAnimal(animalType, name, price, birthday);
             Console.WriteLine("Thank you! We bought a new animal:");
@@ -160,10 +160,35 @@ namespace ConsoleApp2
                     return value;
                 }
                 Console.WriteLine("Please, enter integer value");
-            }           
-
+            }
         }
-
+        public static float EnterText()
+        {
+            float value;
+            while (true)
+            {
+                var answer = Console.ReadLine();
+                if (float.TryParse(answer, out value))
+                {
+                    return value;
+                }
+                Console.WriteLine("Please, enter integer value");
+            }
+        }
+        public static DateTime EnterData()
+        {
+            DateTime value;
+            while(true)
+            {
+                var answer = Console.ReadLine();
+                if (DateTime.TryParse(answer, out value))
+                {
+                    return value;
+                }
+                Console.WriteLine("Please, enter integer value");
+            }
+        }
+        
     }
 }
 
