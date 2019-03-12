@@ -57,7 +57,6 @@ namespace ConsoleApp2
 
         }
 
-
         private static PetShop InitializePetShop(string path, Persister persister)
         {
             PetShop petShop = null; // вынесли код в отдельный метод
@@ -95,7 +94,6 @@ namespace ConsoleApp2
             PetShop petShop = new PetShop(animals, 1000);
             return petShop;
 
-
         }
 
         public static int ShowMenu()
@@ -117,7 +115,7 @@ namespace ConsoleApp2
             Console.WriteLine("1.Dog");
             Console.WriteLine("2.Cat");
             int type = EnterNumber();
-            var animalType = (AnimalType)type; //безопасное приведение типов
+            var animalType = (AnimalType)type; 
 
             Console.WriteLine("Please, enter animal name.");
             string name = Console.ReadLine();
@@ -127,6 +125,7 @@ namespace ConsoleApp2
 
             soldAnimal.Print();
         }
+
         public static void BuyAnimal(PetShop petShop)
         {
             Console.WriteLine("Please, enter animal type:");
@@ -139,10 +138,10 @@ namespace ConsoleApp2
             string name = Console.ReadLine();
 
             Console.WriteLine("Please, enter animal price");
-            float price = EnterText(); 
+            float price = EnterFloat(); 
 
             Console.WriteLine("Please, enter animal birthday");
-            DateTime birthday = EnterData();
+            DateTime birthday = EnterDate();
 
             var buyAnimal = petShop.BuyAnimal(animalType, name, price, birthday);
             Console.WriteLine("Thank you! We bought a new animal:");
@@ -162,7 +161,8 @@ namespace ConsoleApp2
                 Console.WriteLine("Please, enter integer value");
             }
         }
-        public static float EnterText()
+
+        public static float EnterFloat()
         {
             float value;
             while (true)
@@ -172,20 +172,21 @@ namespace ConsoleApp2
                 {
                     return value;
                 }
-                Console.WriteLine("Please, enter integer value");
+                Console.WriteLine("Please, enter float value");
             }
         }
-        public static DateTime EnterData()
+
+        public static DateTime EnterDate()
         {
-            DateTime value;
+            DateTime date;
             while(true)
             {
                 var answer = Console.ReadLine();
-                if (DateTime.TryParse(answer, out value))
+                if (DateTime.TryParse(answer, out date))
                 {
-                    return value;
+                    return date;
                 }
-                Console.WriteLine("Please, enter integer value");
+                Console.WriteLine("Please, enter integer date");
             }
         }
         
@@ -195,5 +196,3 @@ namespace ConsoleApp2
 
 
 
-// Нужно сделать для покупки животного, в котором надо написать Введите имя животного. После ответа должно показать 
-//животное и купитьь его в магазине
